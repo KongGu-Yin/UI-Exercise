@@ -2,3 +2,5 @@
 /.vs/
 #Unity:
 /[Tt]emp/
+*.sln
+*.csproj
