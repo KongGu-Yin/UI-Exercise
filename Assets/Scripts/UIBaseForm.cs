@@ -36,6 +36,9 @@ namespace UIFW
             this.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// 窗体冻结
+        /// </summary>
         public virtual void Freeze()
         {
             this.gameObject.SetActive(false);
