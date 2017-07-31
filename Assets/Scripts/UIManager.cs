@@ -171,7 +171,10 @@ namespace UIFW
 
             if (formFromAllFormCaches != null)
             {
-
+                //显示此窗体
+                formFromAllFormCaches.Display();
+                //窗体‘入栈’操作
+                _StackCurrentForms.Push(formFromAllFormCaches);
             }
         }
 
@@ -182,8 +185,21 @@ namespace UIFW
 
         public UIBaseForm LoadUIToAllFormCaches(string formName)
         {
-            throw new NotImplementedException();
+            UIBaseForm baseUIForm;          //加载的返回窗体
+
+            _DicAllFormCaches.TryGetValue(formName, out baseUIForm);
+            if (baseUIForm == null)
+            {
+                //加载到‘总缓存窗体’集合中
+                baseUIForm = LoadUIForm(formName);
+            }
+            return baseUIForm;
         }
+
+        private UIBaseForm LoadUIForm(string formName) {
+            return null;
+        }
+       
 
         /// <summary>
         /// 是否清空“反向切换”窗体的栈集合
