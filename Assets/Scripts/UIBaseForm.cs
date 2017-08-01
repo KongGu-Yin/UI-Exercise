@@ -21,16 +21,25 @@ namespace UIFW
             set { _CurrentUIType = value; }
         }
 
+        /// <summary>
+        /// 显示
+        /// </summary>
         public virtual void Display()
         {
             this.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// 隐藏
+        /// </summary>
         public virtual void Hiding()
         {
             this.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// 再显示
+        /// </summary>
         public virtual void ReDisplay()
         {
             this.gameObject.SetActive(true);
@@ -41,7 +50,7 @@ namespace UIFW
         /// </summary>
         public virtual void Freeze()
         {
-            this.gameObject.SetActive(false);
+            this.gameObject.SetActive(true);
         }
     }
 }

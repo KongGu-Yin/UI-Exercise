@@ -35,7 +35,7 @@ namespace UIFW
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
-        /// <param name="isCatch"></param>
+        /// <param name="isCatch"><c>是否捕获</c></param>
         /// <returns></returns>
         public T LoadResources<T>(string path,bool isCatch)where T : Object
         {
@@ -57,7 +57,7 @@ namespace UIFW
         /// 加载，克隆资源
         /// </summary>
         /// <param name="path"></param>
-        /// <param name="isCatch"></param>
+        /// <param name="isCatch"><c>是否捕获</c></param>
         /// <returns></returns>
         public GameObject LoadAssets(string path, bool isCatch)
         {
