@@ -7,7 +7,7 @@ public class TestStart : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        UIManager.GetInstance();
+        UIManager.instance.Init();
 	}
 	
 	// Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿/*
  *                     Title : "UIFW"UI框架
- *                     功能：资源加载，增加了“缓存”
+ *                     Descriptions：
+ *                                 资源加载，增加了“缓存”
  * 
 */
 using System.Collections;
@@ -9,26 +10,14 @@ using UnityEngine;
 
 namespace UIFW
 {
-    public class UIResourcesMgr : MonoBehaviour
+    public class UIResourcesMgr : BehaviourSingleton<UIResourcesMgr>
     {
-        private static UIResourcesMgr _Instance;
-
         Hashtable ht;
-
-        public static UIResourcesMgr GetInstance()
-        {
-            if (_Instance == null)
-            {
-                _Instance = new GameObject("_ResourcesMgr").AddComponent<UIResourcesMgr>();
-            }
-            return _Instance;
-        }
 
         void Awake()
         {
             ht = new Hashtable();
         }
-
 
         /// <summary>
         /// 资源加载

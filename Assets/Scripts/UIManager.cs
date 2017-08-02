@@ -1,6 +1,6 @@
 ﻿/*
- *              Tilt : "UIFW"窗体框架
- *              主题 ： 窗体框架管理类
+ *              Title : "UIFW"窗体框架
+ *                  主题 ： 窗体框架管理类
  *              Description ：
  *                          整个UI框架的核心，各个窗体之间的交互都在整个脚本里面，它们个体之间不直接联系
  *                          负责窗体的加载，缓存，以及对于各种生命周期的操作
@@ -13,10 +13,8 @@ using UnityEngine;
 
 namespace UIFW
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : BehaviourSingleton<UIManager>
     {
-        private static UIManager _Instance = null;
-
         //‘预设窗体路径’（参数1：窗体名称，参数2：路径）
         private Dictionary<string, string> _DicFormPaths;
         //‘总缓存’窗体集合（参数1：名称）
@@ -36,15 +34,6 @@ namespace UIFW
 
         private Transform _UIScriptNode = null;
 
-        public static UIManager GetInstance()
-        {
-            if (_Instance == null)
-            {
-                _Instance = new GameObject("_UIManager").AddComponent<UIManager>();
-            }
-            return _Instance;
-        }
-
         void Awake()
         {
             _DicFormPaths = new Dictionary<string, string>();
@@ -58,10 +47,10 @@ namespace UIFW
 
             _UIRootNode = GameObject.FindGameObjectWithTag(UISysDefine.SYS_TAG_CANVAS).transform;
 
-            _UINormalNode = _UIRootNode.Find("NORMAL");
-            _UIFixedNode = _UIRootNode.Find("FIXED");
-            _UIPopUpNode = _UIRootNode.Find("POPUP");
-            _UIScriptNode = _UIRootNode.Find("_UIScriptMgr");
+            _UINormalNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_NORMAL);
+            _UIFixedNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_FIXED);
+            _UIPopUpNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_POPUP);
+            _UIScriptNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_SCRIPTMGR);
 
             //将本脚本作为“根UI节点的”子节点
             this.transform.SetParent(_UIScriptNode, false);
@@ -81,7 +70,7 @@ namespace UIFW
         
         private void InitUIRootNodeLoading()
         {
-            UIResourcesMgr.GetInstance().LoadAssets(UISysDefine.SYS_PATH_CANVAS, false);
+            UIResourcesMgr.instance.LoadAssets(UISysDefine.SYS_PATH_CANVAS, false);
         }
 
         /// <summary>
@@ -370,7 +359,7 @@ namespace UIFW
             _DicFormPaths.TryGetValue(formName,out formPath);
             if (!string.IsNullOrEmpty(formPath))
             {
-                goFormClone = UIResourcesMgr.GetInstance().LoadAssets(formPath, false);
+                goFormClone = UIResourcesMgr.instance.LoadAssets(formPath, false);
             }
             else
             {
@@ -422,7 +411,7 @@ namespace UIFW
         {
             if (_StackCurrentForms != null && _StackCurrentForms.Count >= 1)
             {
-                _StackCurrentForms.Clear();
+                _StackCurrentForms.Clear(); 
                 return true;
             }
             return false;
