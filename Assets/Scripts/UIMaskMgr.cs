@@ -65,8 +65,8 @@ namespace UIFW
                     _TraMaskNode.gameObject.SetActive(true);
                     break;
                 case UIFormLenecyType.Translucence:
-                    _TraMaskNode.GetComponent<Image>().color =
-                    _TraMaskNode.gameObject.SetActive(true);
+                    _TraMaskNode.GetComponent<Image>().color = UIMaskColor
+                    //_TraMaskNode.gameObject.SetActive(true);
                     break;
             }
             
