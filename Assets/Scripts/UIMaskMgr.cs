@@ -53,7 +53,7 @@ namespace UIFW
         /// Descriptions:
         ///     1.根据窗体不同的透明类型，设置遮罩的属性（透明度，是否可穿透）；
         /// </summary>
-        /// <param name="formUI"><c>显示的窗体</c></param>
+        /// <param name="formUI"><c>显示的窗体，层级在遮罩之上</c></param>
         /// <param name="lenecyType"><c>窗体的透明类型</c></param>
         public void SetMask(UIBaseForm formUI, UIFormLenecyType lenecyType)
         {
@@ -61,15 +61,44 @@ namespace UIFW
             {
                 case UIFormLenecyType.Lenecy:
                     //设置颜色、透明度
-                    _TraMaskNode.GetComponent<Image>().color = Color.black;
+                    _TraMaskNode.GetComponent<Image>().color = UIMaskColor.lenecy_Color;
                     _TraMaskNode.gameObject.SetActive(true);
                     break;
                 case UIFormLenecyType.Translucence:
-                    _TraMaskNode.GetComponent<Image>().color = UIMaskColor
-                    //_TraMaskNode.gameObject.SetActive(true);
+                    _TraMaskNode.GetComponent<Image>().color = UIMaskColor.Translucence_Color;
+                    _TraMaskNode.gameObject.SetActive(true); 
+                    break;
+                case UIFormLenecyType.ImPenetrable:
+                    _TraMaskNode.GetComponent<Image>().color = UIMaskColor.ImPenetrable_Color;
+                    _TraMaskNode.gameObject.SetActive(true);
+                    break;
+                case UIFormLenecyType.Penertable:
+                    if (_TraMaskNode.gameObject.activeInHierarchy)
+                    {
+                        _TraMaskNode.gameObject.SetActive(false);
+                    }
+                    break;
+                default:
                     break;
             }
-            
+            //将"_MaskPanel"设为最后渲染...
+            _TraMaskNode.SetAsLastSibling();
+
+            //交互的"PopForm"窗体在"_MaskPanel"之后渲染
+            formUI.transform.SetAsLastSibling();
+
+            //记录摄像机的深度
+        }
+
+        /// <summary>
+        /// 关闭遮罩
+        /// </summary>
+        public void CloseMask()
+        {
+            if (_TraMaskNode.gameObject.activeInHierarchy)
+            {
+                _TraMaskNode.gameObject.SetActive(false);
+            }
         }
     }
 }

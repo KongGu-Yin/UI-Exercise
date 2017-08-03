@@ -36,6 +36,40 @@ namespace UIFW
 
         void Awake()
         {
+            //_DicFormPaths = new Dictionary<string, string>();
+            //_DicAllFormCaches = new Dictionary<string, UIBaseForm>();
+            //_DicDisplayForms = new Dictionary<string, UIBaseForm>();
+
+            //_StackCurrentForms = new Stack<UIBaseForm>();
+
+            ////加载UI根节点_UIRootNode
+            //InitUIRootNodeLoading();
+
+            //_UIRootNode = GameObject.FindGameObjectWithTag(UISysDefine.SYS_TAG_CANVAS).transform;
+
+            //_UINormalNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_NORMAL);
+            //_UIFixedNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_FIXED);
+            //_UIPopUpNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_POPUP);
+            //_UIScriptNode = UIFWHelper.FindTheChildNode(_UIRootNode, UISysDefine.SYS_NODE_SCRIPTMGR);
+
+            ////将本脚本作为“根UI节点的”子节点
+            //this.transform.SetParent(_UIScriptNode, false);
+
+            ////"场景转换"后，根节点不会消失
+            //DontDestroyOnLoad(_UIRootNode);
+
+            ////找到各个场景UI  之后用配置表->读表
+            //if (_DicFormPaths != null)
+            //{
+            //    _DicFormPaths.Add(UISysDefine.SYS_NAME_LOGIN, UISysDefine.SYS_PATH_LOGIN);
+            //    _DicFormPaths.Add(UISysDefine.SYS_NAME_MENU, UISysDefine.SYS_PATH_MENU);
+            //    _DicFormPaths.Add(UISysDefine.SYS_NAME_WINDOW, UISysDefine.SYS_PATH_WINDOW);
+            //    _DicFormPaths.Add(UISysDefine.SYS_NAME_FIGHT, UISysDefine.SYS_PATH_FIGTH);
+            //}
+        }
+
+        public override void Init()
+        {
             _DicFormPaths = new Dictionary<string, string>();
             _DicAllFormCaches = new Dictionary<string, UIBaseForm>();
             _DicDisplayForms = new Dictionary<string, UIBaseForm>();
@@ -67,7 +101,7 @@ namespace UIFW
                 _DicFormPaths.Add(UISysDefine.SYS_NAME_FIGHT, UISysDefine.SYS_PATH_FIGTH);
             }
         }
-        
+
         private void InitUIRootNodeLoading()
         {
             UIResourcesMgr.instance.LoadAssets(UISysDefine.SYS_PATH_CANVAS, false);

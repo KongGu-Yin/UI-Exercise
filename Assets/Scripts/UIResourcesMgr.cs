@@ -4,6 +4,7 @@
  *                                 资源加载，增加了“缓存”
  * 
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace UIFW
         /// <param name="path"></param>
         /// <param name="isCatch"><c>是否捕获</c></param>
         /// <returns></returns>
-        public T LoadResources<T>(string path,bool isCatch)where T : Object
+        public T LoadResources<T>(string path,bool isCatch)where T : UnityEngine.Object
         {
             if (ht.Contains(path))
                 return ht[path] as T;

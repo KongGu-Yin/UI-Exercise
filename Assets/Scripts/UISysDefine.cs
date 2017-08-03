@@ -13,7 +13,9 @@ using UnityEngine;
 
 namespace UIFW
 {
-    //表示窗体类型挂载的节点
+    /// <summary>
+    /// 窗体位置类型，匹配"根节点"下的子节点类型
+    /// </summary>
     public enum UIFormType
     {
         /// <summary>
@@ -29,7 +31,9 @@ namespace UIFW
         /// </summary>
         PopUp
     }
-    //窗体显示类型
+    /// <summary>
+    /// 窗体显示类型
+    /// </summary>
     public enum UIFormShowType
     {
         /// <summary>
@@ -41,11 +45,13 @@ namespace UIFW
         /// </summary>
         Reverse,
         /// <summary>
-        /// 显示窗体的时候回隐藏其他窗体
+        /// 显示窗体的时候需要隐藏所有其他窗体
         /// </summary>
         HideOther
     }
-    //窗体透明类型
+    /// <summary>
+    /// 窗体透明类型
+    /// </summary>
     public enum UIFormLenecyType
     {
         /// <summary>
@@ -66,14 +72,23 @@ namespace UIFW
         Penertable
     }
 
-    //
-    // 摘要：
-    //      ///
-    //      根据 UIFormLenecyType 的不同类型设定的颜色值，配合着使用
-    //      ///
+    /// <summary>
+    /// 根据 UIFormLenecyType 的不同类型设定的颜色值，配合着使用
+    /// </summary>
     public struct UIMaskColor
     {
-        public static UIMaskColor lenecy_Color { get; }
+        /// <summary>
+        /// R G B is (0 0 0 0) .
+        /// </summary>
+        public static Color lenecy_Color = new Color(0, 0, 0, 0);
+        /// <summary>
+        /// R G B is (0 0 0 20/225) .
+        /// </summary>
+        public static Color Translucence_Color = new Color(0, 0, 0, 20/225);
+        /// <summary>
+        /// R G B is (0 0 0 50/225) .
+        /// </summary>
+        public static Color ImPenetrable_Color = new Color(0, 0, 0, 50/225);
     }
 
     public class UISysDefine : MonoBehaviour
@@ -96,14 +111,14 @@ namespace UIFW
 
         //UI各个场景预制体：
         //路径：
-        public const string SYS_PATH_LOGIN = "";
-        public const string SYS_PATH_MENU = "";
-        public const string SYS_PATH_WINDOW = "";
-        public const string SYS_PATH_FIGTH = "";
+        public const string SYS_PATH_LOGIN = "SYS_PATH_LOGIN";
+        public const string SYS_PATH_MENU = "SYS_PATH_MENU";
+        public const string SYS_PATH_WINDOW = "SYS_PATH_WINDOW";
+        public const string SYS_PATH_FIGTH = "SYS_PATH_FIGTH";
         //名字：
-        public const string SYS_NAME_LOGIN = "";
-        public const string SYS_NAME_MENU = "";
-        public const string SYS_NAME_WINDOW = "";
-        public const string SYS_NAME_FIGHT = "";
+        public const string SYS_NAME_LOGIN = "SYS_NAME_LOGIN";
+        public const string SYS_NAME_MENU = "SYS_NAME_MENU";
+        public const string SYS_NAME_WINDOW = "SYS_NAME_WINDOW";
+        public const string SYS_NAME_FIGHT = "SYS_NAME_FIGHT";
     }
 }
